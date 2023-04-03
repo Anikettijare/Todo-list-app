@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Todo list app</title>
+</head>
+<body>
+    <div class="todo_container">
+        <input type="text" id="item" placeholder="Write something here and press enter" autofocus>
+        <ul id="todo_list">
+
+        </ul>
+    </div>
+
+    <script>
+        let item = document.querySelector("#item");
+        let listbox = document.querySelector("#todo_list")
+
+        item.addEventListener("keyup", function(event) {
+            if (event.key == "Enter") {
+                addToDo(this.value);
+                this.value = "";
+            }
+        });
+
+        let addToDo = (item) => {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = `
+                ${item}
+                <i class="fa fa-times"></i>
+            `;
+            listItem.querySelector("i").addEventListener("click", function(){
+                listItem.remove();
+            });
+            listbox.appendChild(listItem);
+        }
+    </script>
+</body>
+</html>
